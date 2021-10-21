@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:login_page/screens/profile.dart';
+import 'package:login_page/widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final widthOfScreen = MediaQuery.of(context).size.width;
-    final heightOfScreen = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -66,69 +67,10 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       height: 40.0,
                     ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 9.0),
-                      decoration: BoxDecoration(
-                        /*
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(25.0),
-                            topRight: Radius.circular(25.0)),
-                            */
-                        color: Color(0xff91c7fa),
-                      ),
-                      child: TextField(
-                        style: TextStyle(
-                            fontSize: 17.0,
-                            color: Colors.black87,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: 1.0),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Enter your Email',
-                          icon: Icon(
-                            Icons.mail_outline,
-                            color: Colors.black87,
-                          ),
-                          hintStyle: TextStyle(
-                              fontSize: 17.0,
-                              color: Colors.black87,
-                              fontWeight: FontWeight.normal,
-                              letterSpacing: 1.0),
-                        ),
-                      ),
-                    ),
+                    BuildWidget(
+                        iconData: Icons.mail_outline, text: 'Enter your Email'),
                     SizedBox(height: 15.0),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 9.0),
-                      decoration: BoxDecoration(
-                        /*
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(25.0),
-                            bottomRight: Radius.circular(25.0)),
-                            */
-                        color: Color(0xff91c7fa),
-                      ),
-                      child: TextField(
-                        style: TextStyle(
-                            fontSize: 17.0,
-                            color: Colors.black87,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: 1.0),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Password',
-                          icon: Icon(
-                            Icons.lock,
-                            color: Colors.black87,
-                          ),
-                          hintStyle: TextStyle(
-                              fontSize: 17.0,
-                              color: Colors.black87,
-                              fontWeight: FontWeight.normal,
-                              letterSpacing: 1.0),
-                        ),
-                      ),
-                    ),
+                    BuildWidget(iconData: Icons.lock, text: 'Password'),
                     SizedBox(
                       height: 10.0,
                     ),
@@ -148,7 +90,13 @@ class HomePage extends StatelessWidget {
                     MaterialButton(
                       minWidth: double.maxFinite,
                       color: Color(0xff9acbf5),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ProfileScreen(),
+                            ));
+                      },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: Text(
@@ -178,19 +126,48 @@ class HomePage extends StatelessWidget {
                         border: Border.all(color: Color(0xff9acbf5)),
                       ),
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Icon(FontAwesomeIcons.facebook),
-                              Text('Facebook'),
+                              Icon(
+                                FontAwesomeIcons.facebook,
+                                size: 23.0,
+                                color: Color(0xff3b5998),
+                              ),
+                              SizedBox(width: 10.0),
+                              Text(
+                                'Facebook',
+                                style: TextStyle(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black54),
+                              ),
                             ],
                           ),
                           VerticalDivider(color: Color(0xff9acbf5)),
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Icon(FontAwesomeIcons.google),
-                              Text('Google'),
+                              Icon(
+                                FontAwesomeIcons.google,
+                                size: 23.0,
+                                color: Color(0xffDB4437),
+                              ),
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              Text(
+                                'Google',
+                                style: TextStyle(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black54),
+                              ),
                             ],
                           ),
                         ],
